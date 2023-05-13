@@ -1,0 +1,23 @@
+.filters {
+    display: flex;
+    margin: 20px;
+    height: 50%;
+    width: auto;
+    border-bottom: 3px solid;
+}
+
+.filter-button {
+    cursor: pointer;
+    background-color: transparent;
+    height: 50px;
+    width: 100px;
+    color: black;
+    font-size: 1em;
+    border: unset;
+    margin: auto;
+    font-weight: 800;
+}
+
+.filter-button:hover {
+    color: #414142;
+}

@@ -1,0 +1,8 @@
+.business-list {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    margin: 50px;
+    justify-items: center;
+    margin-right: 10%;
+    margin-left: 10%;
+}

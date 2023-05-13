@@ -1,0 +1,19 @@
+.search-bar{
+    display: block;
+    margin: auto;
+    width: 70%;
+    min-height: 50%;
+}
+
+.submit-button {
+    padding: 15px 40px;
+    margin-top: 25px;
+    background-color: #cba352;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border: unset;
+    border-radius: 10px;
+    font-size:medium;
+    
+}

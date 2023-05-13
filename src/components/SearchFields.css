@@ -1,0 +1,21 @@
+.search-fields {
+    display: flex;
+    justify-content: space-around;
+}
+
+.input-button {
+    background-color: white;
+    border: unset;
+    display: block;
+    margin: auto;
+    width: 50%;
+    min-height: 40px;
+    margin: 1em;
+    border-radius: 10px;
+    padding-left: 25px;
+    outline: none;
+}
+
+.input-button::placeholder{
+    font-weight: 700;
+}
