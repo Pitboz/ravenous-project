@@ -2,11 +2,13 @@ import React from 'react';
 import Business from './Business';
 import './BusinessList.css';
 
-const testArray = Array.apply(null, Array(6)).map(function () {})
+function BusinessList(props){
 
-function BusinessList(){
-    const newArray = testArray.map( () => <Business />);
-    console.log(testArray);
+    const newArray = [];
+    for(let i = 0; i < props.businesses.length; i++){
+        newArray.push(<Business business={props.businesses[i]} />);
+    };
+
     return (
         <div className='business-list'>
                 {newArray}

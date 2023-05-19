@@ -15,5 +15,13 @@
     border: unset;
     border-radius: 10px;
     font-size:medium;
-    
+}
+
+.submit-button:hover{
+    background-color: #c4983f
+}
+
+.submit-button:active {
+    background-color: #c4983f;
+    transform: translateY(4px);
 }
