@@ -2,9 +2,10 @@ import React from 'react';
 import Filters from './Filters';
 import SearchFields from './SearchFields';
 import {useState} from 'react';
+import getBusinessList from '../utils/yelp-api';
 import './SearchBar.css'
 
-function SearchBar(){
+function SearchBar(props){
 
     const filterTerms = {
         bestMatch: "best_match",
@@ -13,9 +14,7 @@ function SearchBar(){
     };
 
     const [currentSearchTerm, setSearchTerm] = useState("");
-
     const [currentLocationTerm, setLocationTerm] = useState("");
-
     const [currentFilter, setFilter] = useState(filterTerms.bestMatch);
 
     function onSelectFilterHandler(newFilter){        
@@ -30,8 +29,10 @@ function SearchBar(){
         setLocationTerm(newLocationTerm);
     }
 
-    function buttonLogger(){
-        console.log('Searching Yelp with ' + currentSearchTerm + ', ' + currentLocationTerm + ', ' + currentFilter);
+    async function submitRequest(){
+        let data = await getBusinessList(currentSearchTerm, currentLocationTerm, currentFilter);
+        props.businessList(data);
+
     }
 
     return (
@@ -41,7 +42,7 @@ function SearchBar(){
             <SearchFields 
             onSearchTerm={onSearchTermHandler} 
             onLocationTerm={onLocationTermHandler} />
-            <button className='submit-button' onClick={buttonLogger}>Let's go!</button>
+            <button className='submit-button' onClick={submitRequest}>Let's go!</button>
         </div>
     );
 }

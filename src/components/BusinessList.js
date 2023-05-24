@@ -4,14 +4,14 @@ import './BusinessList.css';
 
 function BusinessList(props){
 
-    const newArray = [];
-    for(let i = 0; i < props.businesses.length; i++){
-        newArray.push(<Business business={props.businesses[i]} />);
+    const businessArray = [];
+    for(let i = 0; i < props.array.length; i++){
+        businessArray.push(<Business key={props.array[i].id} business={props.array[i]} />);
     };
 
     return (
         <div className='business-list'>
-                {newArray}
+                {businessArray}
         </div>
     )
 }
