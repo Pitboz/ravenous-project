@@ -20,13 +20,7 @@ function SearchFields(props){
         }
     }
 
-    /*<input className='input-button' 
-                    type="text" 
-                    placeholder='Where?' 
-                    min={1} 
-                    max={250}
-                    onInput={onInputLocation} 
-                    onKeyDown={keyPressHandler} ></input>*/
+    /**/
 
     return (
         <div className='search-fields'>
@@ -35,14 +29,13 @@ function SearchFields(props){
                     placeholder='Search Businesses' 
                     onInput={onInputSearch} 
                     onKeyDown={keyPressHandler} ></input>
-             <Autocomplete
-                    apiKey={'AIzaSyD5qLywWx5z0apAK14jvYkPCTXwHF3QquM'} 
-                    className='input-button' 
-                    placeholder='Where?'
+             <input className='input-button' 
+                    type="text" 
+                    placeholder='Where?' 
+                    min={1} 
+                    max={250}
                     onInput={onInputLocation} 
-                    onKeyDown={keyPressHandler}
-                    language='en'/>
-
+                    onKeyDown={keyPressHandler} ></input>
         </div>
     )
 }
