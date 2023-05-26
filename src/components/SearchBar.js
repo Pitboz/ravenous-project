@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Filters from './Filters';
 import SearchFields from './SearchFields';
-import {useState} from 'react';
 import getBusinessList from '../utils/yelp-api';
 import './SearchBar.css'
 
@@ -16,8 +15,9 @@ function SearchBar(props){
     const [currentSearchTerm, setSearchTerm] = useState("");
     const [currentLocationTerm, setLocationTerm] = useState("");
     const [currentFilter, setFilter] = useState(filterTerms.bestMatch);
+    const [currentKeyPress, setKeyPress] = useState(false);
 
-    function onSelectFilterHandler(newFilter){        
+    function onSelectFilterHandler(newFilter){
         setFilter(filterTerms[newFilter]);
     };
 
@@ -29,11 +29,21 @@ function SearchBar(props){
         setLocationTerm(newLocationTerm);
     }
 
+    function onKeyPressHandler(newKeyPress){
+        setKeyPress(newKeyPress);
+    }   
+    
     async function submitRequest(){
-        let data = await getBusinessList(currentSearchTerm, currentLocationTerm, currentFilter);
-        props.businessList(data);
-
+        if (!currentLocationTerm) {
+            return;
+        }
+        let fetchedBusinesses = await getBusinessList(currentSearchTerm, currentLocationTerm, currentFilter);
+        props.businessList(fetchedBusinesses);
     }
+
+    useEffect(() => {
+        submitRequest();
+    }, [currentFilter, currentKeyPress]);
 
     return (
         <div className='search-bar'>
@@ -41,7 +51,9 @@ function SearchBar(props){
             onSelectFilter={onSelectFilterHandler} />
             <SearchFields 
             onSearchTerm={onSearchTermHandler} 
-            onLocationTerm={onLocationTermHandler} />
+            onLocationTerm={onLocationTermHandler} 
+            onKeyPress={onKeyPressHandler} 
+            currentKey={currentKeyPress}/>
             <button className='submit-button' onClick={submitRequest}>Let's go!</button>
         </div>
     );

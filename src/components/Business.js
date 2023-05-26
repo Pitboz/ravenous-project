@@ -6,7 +6,6 @@ function Business(props){
     const fullAddress = props.business.location.address1 + " " + props.business.location.state + " " + props.business.location.zip_code;
     const addressUrl = fullAddress.replaceAll(" ", "+");
     const googleMapsUrl = 'https://www.google.com/maps/place/' + addressUrl;
-    console.log(props.business)
 
     return (
         <div className='business-card'>

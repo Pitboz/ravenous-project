@@ -5,19 +5,21 @@ async function getBusinessList(term, location, filter){
     let url = "https://api.yelp.com/v3/businesses/search";
     let queryStrings = [];
     let joinedQueries = "";
+    let controller = new AbortController();
     const corsSupport = 'https://cors-anywhere.herokuapp.com/';
     const options = {
         method: 'GET', 
         headers: {
             accept: 'application/json',
             Authorization: "Bearer " + api_key
-        }
+        },
+        signal: controller.signal
     };
 
     if (term) {
         queryStrings.push("term=" + term);
     }
-
+    
     if (location) {
         queryStrings.push("location=" + location);
     }
@@ -32,9 +34,14 @@ async function getBusinessList(term, location, filter){
 
     const response = await fetch(url, options);
 
-    if(response.status === 200){
+    if(response.ok){
         const jsonBody = await response.json();
         return jsonBody.businesses;
+    } else {
+        const message = await response.json();
+        controller.abort();
+        window.alert('Code: ' + message.error.code + 
+                    ' Reason: ' + message.error.description);
     }
 
 }
